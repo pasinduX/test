@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: TestApp
+  labels:
+    app: TestApp
+spec:
+  selector:
+    matchLabels:
+      app: TestApp
+  replicas:  1
+  template:
+    metadata:
+      labels:
+        app: TestApp
+    spec:
+      containers:
+       - name: TestApp
+         image: evolza/TestApp:latest
+         imagePullPolicy: Always
+         ports:
+          - containerPort: 8080
+            name: rest
+      imagePullSecrets:
+          - name: notavailable
